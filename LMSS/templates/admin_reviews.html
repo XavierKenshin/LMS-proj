@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin: Reviews</title>
+</head>
+<body>
+    <h1>Book Reviews</h1>
+    {% if reviews %}
+        <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>Book:</strong> {{ review.book.title }} by {{ review.book.author }}<br>
+                <strong>Review:</strong> {{ review.review_text }}<br>
+                <strong>Sentiment Score:</strong> {{ review.sentiment_score }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews available.</p>
+    {% endif %}
+    <a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow a Book</title>
+</head>
+<body>
+    <h1>Borrow a Book</h1>
+    <form method="POST">
+        <select name="book_id" required>
+            {% for book in books %}
+                <option value="{{ book.id }}">{{ book.title }} by {{ book.author }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="borrower_name" placeholder="Your Name" required>
+        <input type="number" name="duration" min="1" max="30" placeholder="Duration (days)" required>
+        <button type="submit">Borrow</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin: Borrowed Books</title>
+</head>
+<body>
+    <h1>Borrowed Books</h1>
+    {% if borrowed_books %}
+        <ul>
+        {% for borrow in borrowed_books %}
+            <li>
+                <strong>Book:</strong> {{ borrow.book.title }} by {{ borrow.book.author }}<br>
+                <strong>Borrower:</strong> {{ borrow.borrower_name }}<br>
+                <strong>Borrow Date:</strong> {{ borrow.borrow_date.strftime('%Y-%m-%d') }}<br>
+                <strong>Return Date:</strong> {{ borrow.return_date.strftime('%Y-%m-%d') }}<br>
+                <strong>Days Left:</strong> {{ (borrow.return_date - borrow.borrow_date).days }} days<br>
+                <strong>Status:</strong> {% if borrow.returned %}Returned{% else %}Not Returned{% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books are currently borrowed.</p>
+    {% endif %}
+    <a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+</body>
+</html>

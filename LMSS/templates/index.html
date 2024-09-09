@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+</head>
+<body>
+    <h1>Library Management System</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('search') }}">Search</a></li>
+            <li><a href="{{ url_for('donate') }}">Donate</a></li>
+            <li><a href="{{ url_for('borrow') }}">Borrow</a></li>
+            <li><a href="{{ url_for('return_book') }}">Return</a></li>
+            <li><a href="{{ url_for('review') }}">Give Review</a></li>
+            <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+        </ul>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
